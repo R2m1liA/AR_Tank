@@ -1,47 +1,84 @@
+// using UnityEngine;
+// using UnityEngine.UI;
+
+// public class AudioController : MonoBehaviour
+// {
+//     public Slider volumeSlider;      // 音量滑块
+
+//     public Slider sfxSlider;         // 音效滑块
+
+//     public AudioSource musicSource;  // 音乐音频源
+//     public AudioSource sfxSource;    // 音效音频源
+
+//     void Start()
+//     {
+//         // 初始化滑块和文本
+//         volumeSlider.value = musicSource.volume;
+//         sfxSlider.value = sfxSource.volume;
+        
+
+//         // 添加滑块值变化的监听器
+//         volumeSlider.onValueChanged.AddListener(OnVolumeSliderValueChanged);
+//         sfxSlider.onValueChanged.AddListener(OnSFXSliderValueChanged);
+//     }
+
+//     void OnVolumeSliderValueChanged(float value)
+//     {
+//         musicSource.volume = value;
+//         // UpdateVolumeText();
+//     }
+
+//     void OnSFXSliderValueChanged(float value)
+//     {
+//         sfxSource.volume = value;
+//         // UpdateSFXText();
+//     }
+
+   
+// }
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Audio;
 
-public class AudioController : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
-    public Slider volumeSlider;      // 音量滑块
-    public Text volumeText;          // 音量显示文本
-    public Slider sfxSlider;         // 音效滑块
-    public Text sfxText;             // 音效显示文本
-    public AudioSource musicSource;  // 音乐音频源
-    public AudioSource sfxSource;    // 音效音频源
+    public static AudioManager Instance { get; private set; }
 
-    void Start()
+    public AudioMixer audioMixer; // 引用Audio Mixer
+
+    private void Awake()
     {
-        // 初始化滑块和文本
-        volumeSlider.value = musicSource.volume;
-        sfxSlider.value = sfxSource.volume;
-        UpdateVolumeText();
-        UpdateSFXText();
-
-        // 添加滑块值变化的监听器
-        volumeSlider.onValueChanged.AddListener(OnVolumeSliderValueChanged);
-        sfxSlider.onValueChanged.AddListener(OnSFXSliderValueChanged);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // 确保在场景切换时不会销毁
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    void OnVolumeSliderValueChanged(float value)
+    public void SetVolume(float volume)
     {
-        musicSource.volume = value;
-        UpdateVolumeText();
+        audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 20); // 转换为分贝
     }
 
-    void OnSFXSliderValueChanged(float value)
+    public void SetSFXVolume(float volume)
     {
-        sfxSource.volume = value;
-        UpdateSFXText();
+        audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20); // 转换为分贝
     }
 
-    void UpdateVolumeText()
+    public float GetVolume()
     {
-        volumeText.text = $"Volume: {(int)(volumeSlider.value * 100)}%";
+        float volume;
+        audioMixer.GetFloat("Volume", out volume);
+        return Mathf.Pow(10, volume / 20); // 从分贝转换为线性值
     }
 
-    void UpdateSFXText()
+    public float GetSFXVolume()
     {
-        sfxText.text = $"SFX: {(int)(sfxSlider.value * 100)}%";
+        float volume;
+        audioMixer.GetFloat("SFXVolume", out volume);
+        return Mathf.Pow(10, volume / 20); // 从分贝转换为线性值
     }
 }
