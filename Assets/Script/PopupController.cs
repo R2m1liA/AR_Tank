@@ -17,12 +17,12 @@ public class PopupController : MonoBehaviour
         closeButton.onClick.AddListener(ClosePopup);
     }
 
-    void ShowPopup()
+    public void ShowPopup()
     {
         popupPanel.SetActive(true);
     }
 
-    void ClosePopup()
+    public void ClosePopup()
     {
         popupPanel.SetActive(false);
     }
