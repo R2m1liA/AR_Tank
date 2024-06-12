@@ -284,13 +284,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34212114}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14828803, y: 0.024024151, z: -0.014891046, w: 0.98854023}
+  m_LocalRotation: {x: 0.019257855, y: -0.9874016, z: 0.14778453, w: 0.05316828}
   m_LocalPosition: {x: 0.71283454, y: 1.0857251, z: -7.710012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 17.091, y: 2.583, z: -1.338}
+  m_LocalEulerAnglesHint: {x: 17.091, y: -174.037, z: -1.338}
 --- !u!114 &34212118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5084,6 +5084,11 @@ PrefabInstance:
       propertyPath: firebutton
       value: 
       objectReference: {fileID: 1821710965}
+    - target: {fileID: 5621127481406504458, guid: 51d37b198baa12f4693648844cc99688,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 34212116}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
