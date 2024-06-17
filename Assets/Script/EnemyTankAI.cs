@@ -12,16 +12,16 @@ public enum AIState
 public class EnemyTankAI : MonoBehaviour
 {
     public AIState currentState = AIState.Initializing;
-    public Transform[] patrolPoints; // Ñ²Âßµã
-    public float detectionRadius = 20f; // Ë÷µÐ·¶Î§
-    public float attackRadius = 10f; // ¹¥»÷·¶Î§
-    public float attackCooldown = 2f; // ¹¥»÷ÀäÈ´Ê±¼ä
-    public GameObject shellPrefab; // ÅÚµ¯Ô¤ÖÆÌå
-    public Transform firePoint; // ÅÚµ¯·¢Éäµã
+    public Transform[] patrolPoints; // Ñ²ï¿½ßµï¿½
+    public float detectionRadius = 20f; // ï¿½ï¿½ï¿½Ð·ï¿½Î§
+    public float attackRadius = 10f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§
+    public float attackCooldown = 2f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´Ê±ï¿½ï¿½
+    public GameObject shellPrefab; // ï¿½Úµï¿½Ô¤ï¿½ï¿½ï¿½ï¿½
+    public Transform firePoint; // ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public int currentHealth = 100;
-    public GameObject explosionEffect;// ±¬Õ¨ÌØÐ§Ô¤ÖÆÌå
-    public AudioClip explosionSound;// ±¬Õ¨ÒôÐ§
-    public AudioClip FireSound;// ±¬Õ¨ÒôÐ§
+    public GameObject explosionEffect;// ï¿½ï¿½Õ¨ï¿½ï¿½Ð§Ô¤ï¿½ï¿½ï¿½ï¿½
+    public AudioClip explosionSound;// ï¿½ï¿½Õ¨ï¿½ï¿½Ð§
+    public AudioClip FireSound;// ï¿½ï¿½Õ¨ï¿½ï¿½Ð§
 
     private int currentPatrolIndex = 0;
     private NavMeshAgent navMeshAgent;
@@ -53,7 +53,7 @@ public class EnemyTankAI : MonoBehaviour
                 AttackPlayer();
                 break;
             case AIState.Destroyed:
-                // AIÏú»ÙºóµÄ´¦ÀíÂß¼­
+                // AIï¿½ï¿½ï¿½Ùºï¿½Ä´ï¿½ï¿½ï¿½ï¿½ß¼ï¿½
                 break;
         }
     }
@@ -99,13 +99,16 @@ public class EnemyTankAI : MonoBehaviour
 
         if (attackTimer <= 0f)
         {
-            // ·¢ÉäÅÚµ¯
+            // ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½
             Instantiate(shellPrefab, firePoint.position, firePoint.rotation);
             AudioSource.PlayClipAtPoint(FireSound, transform.position);
             attackTimer = attackCooldown;
         }
 
-        navMeshAgent.transform.LookAt(player.position);
+        if(player)
+        {
+            navMeshAgent.transform.LookAt(player.position);
+        }
 
         if (Vector3.Distance(transform.position, player.position) > attackRadius)
         {
@@ -116,19 +119,19 @@ public class EnemyTankAI : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        // ¼õÉÙÉúÃüÖµ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            // Èç¹ûÉúÃüÖµÎªÁã£¬ÇÐ»»µ½Ïú»Ù×´Ì¬
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÖµÎªï¿½ã£¬ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
             currentState = AIState.Destroyed;
-            // Ïú»Ù´¦ÀíÂß¼­£¬ÀýÈç²¥·Å±¬Õ¨ÌØÐ§
+            // ï¿½ï¿½ï¿½Ù´ï¿½ï¿½ï¿½ï¿½ß¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç²¥ï¿½Å±ï¿½Õ¨ï¿½ï¿½Ð§
             Destroy(gameObject);
-            // ²¥·Å±¬Õ¨ÌØÐ§
+            // ï¿½ï¿½ï¿½Å±ï¿½Õ¨ï¿½ï¿½Ð§
             Instantiate(explosionEffect, transform.position, transform.rotation);
-            // ²¥·Å±¬Õ¨ÒôÐ§
+            // ï¿½ï¿½ï¿½Å±ï¿½Õ¨ï¿½ï¿½Ð§
             AudioSource.PlayClipAtPoint(explosionSound, transform.position);
-            // Ôö¼ÓÓÎÏ··ÖÊý
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½
             gameManager.AddScore(20); 
             
             
