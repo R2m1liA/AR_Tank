@@ -248,6 +248,9 @@ MonoBehaviour:
     type: 3}
   firePoint: {fileID: 6671644294197211261}
   currentHealth: 100
+  explosionEffect: {fileID: 151086, guid: 0bf7cee35c92dd54288686a438753966, type: 3}
+  explosionSound: {fileID: 8300000, guid: 7661b7b36da4aa5429ad50401138bea5, type: 3}
+  FireSound: {fileID: 8300000, guid: 66c3545230001d742bb78019f6514716, type: 3}
 --- !u!54 &593258040515367192
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -19,16 +19,21 @@ public class EnemyTankAI : MonoBehaviour
     public GameObject shellPrefab; // 炮弹预制体
     public Transform firePoint; // 炮弹发射点
     public int currentHealth = 100;
+    public GameObject explosionEffect;// 爆炸特效预制体
+    public AudioClip explosionSound;// 爆炸音效
+    public AudioClip FireSound;// 爆炸音效
 
     private int currentPatrolIndex = 0;
     private NavMeshAgent navMeshAgent;
     private float attackTimer;
     private Transform player;
+    private GameManager gameManager;
 
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        gameManager = FindObjectOfType<GameManager>();
         currentState = AIState.Patrolling;
     }
 
@@ -96,6 +101,7 @@ public class EnemyTankAI : MonoBehaviour
         {
             // 发射炮弹
             Instantiate(shellPrefab, firePoint.position, firePoint.rotation);
+            AudioSource.PlayClipAtPoint(FireSound, transform.position);
             attackTimer = attackCooldown;
         }
 
@@ -118,6 +124,14 @@ public class EnemyTankAI : MonoBehaviour
             currentState = AIState.Destroyed;
             // 销毁处理逻辑，例如播放爆炸特效
             Destroy(gameObject);
+            // 播放爆炸特效
+            Instantiate(explosionEffect, transform.position, transform.rotation);
+            // 播放爆炸音效
+            AudioSource.PlayClipAtPoint(explosionSound, transform.position);
+            // 增加游戏分数
+            gameManager.AddScore(20); 
+            
+            
         }
         
     }

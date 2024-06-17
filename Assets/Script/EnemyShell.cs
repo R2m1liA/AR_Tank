@@ -5,10 +5,11 @@ using UnityEngine;
 public class EnemyShell : MonoBehaviour
 {
     public float moveSpeed;
-    public float maxLifetime = 5.0f; // ÅÚµ¯·ÉÐÐ×î´óÊ±¼ä
-    public float explosionRadius = 2.0f; // ±¬Õ¨°ë¾¶
-    public GameObject explosionEffect; // ±¬Õ¨Ð§¹û
-    public int damage = 50; // ÉËº¦Öµ
+    public float maxLifetime = 5.0f; // ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+    public float explosionRadius = 2.0f; // ï¿½ï¿½Õ¨ï¿½ë¾¶
+    public GameObject explosionEffect; // ï¿½ï¿½Õ¨Ð§ï¿½ï¿½
+    public int damage = 50; // ï¿½Ëºï¿½Öµ
+    public AudioClip explosionSound; // ï¿½ï¿½Õ¨ï¿½ï¿½Ð§
 
     private float lifetime;
     // Start is called before the first frame update
@@ -36,26 +37,29 @@ public class EnemyShell : MonoBehaviour
 
     void Explode()
     {
-        // ÏÔÊ¾±¬Õ¨Ð§¹û
+        // ï¿½ï¿½Ê¾ï¿½ï¿½Õ¨Ð§ï¿½ï¿½
         if (explosionEffect != null)
         {
-            Instantiate(explosionEffect, transform.position, transform.rotation);
+            Instantiate(explosionEffect, transform.position, transform.rotation).GetComponent<ParticleSystem>().Play();
+            AudioSource.PlayClipAtPoint(explosionSound, transform.position);
         }
 
-        // ¼ì²â±¬Õ¨·¶Î§ÄÚµÄËùÓÐÎïÌå
+        // ï¿½ï¿½â±¬Õ¨ï¿½ï¿½Î§ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach (Collider nearbyObject in colliders)
         {
-            // ¶ÔÌ¹¿ËÔì³ÉÉËº¦
+            // ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½
            TankHealth TankHealth = nearbyObject.GetComponent<TankHealth>();
             if (TankHealth != null)
             {
+                // ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½
+                Destroy(gameObject);
                 TankHealth.TakeDamage(damage);
             }
 
         }
 
-        // Ïú»ÙÅÚµ¯
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½
         Destroy(gameObject);
     }
 }

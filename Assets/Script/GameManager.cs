@@ -5,18 +5,18 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public TMP_Text timeText;        // Ê±¼äÏÔÊ¾ÎÄ±¾
-    public TMP_Text scoreText;       // ·ÖÊıÏÔÊ¾ÎÄ±¾
-    public GameObject resultPanel; // ½áËã½çÃæÃæ°å
-    public Text resultText;      // ½áËã½á¹ûÎÄ±¾
+    public TMP_Text timeText;        // Ê±ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ä±ï¿½
+    public TMP_Text scoreText;       // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ä±ï¿½
+    public GameObject resultPanel; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public TMP_Text resultText;      // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½
 
-    private float gameTime = 60f; // ÓÎÏ·Ê±³¤
-    private int score = 0;        // ÓÎÏ··ÖÊı
+    private float gameTime = 60f; // ï¿½ï¿½Ï·Ê±ï¿½ï¿½
+    private int score = 0;        // ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½
     private bool gameEnded = false;
 
     void Start()
     {
-        // ³õÊ¼»¯Ê±¼äºÍ·ÖÊı
+        // ï¿½ï¿½Ê¼ï¿½ï¿½Ê±ï¿½ï¿½Í·ï¿½ï¿½ï¿½
         UpdateTimeText();
         UpdateScoreText();
         resultPanel.SetActive(false);
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameEnded) return;
 
-        // ¸üĞÂÓÎÏ·Ê±¼ä
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·Ê±ï¿½ï¿½
         gameTime -= Time.deltaTime;
         if (gameTime <= 0)
         {
@@ -60,13 +60,13 @@ public class GameManager : MonoBehaviour
     void EndGame()
     {
         gameEnded = true;
-        resultText.text = "Game Over\nFinal Score: " + score.ToString();
+        // resultText.text = "Game Over\nFinal Score: " + score.ToString();
         resultPanel.SetActive(true);
-        // ÔİÍ£ÓÎÏ·
+        // ï¿½ï¿½Í£ï¿½ï¿½Ï·
         Time.timeScale = 0f;
     }
     /*
-    // ¿ÉÑ¡£ºÌí¼ÓÒ»¸öÖØÆôÓÎÏ·µÄ·½·¨
+    // ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½Ä·ï¿½ï¿½ï¿½
     public void RestartGame()
     {
         Time.timeScale = 1f;
