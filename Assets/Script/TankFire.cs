@@ -10,6 +10,7 @@ public class TankFire : MonoBehaviour
     public Button firebutton;
     public float cooldownTime; // 攻击冷却时间
     private bool canFire = true; // 是否可以攻击
+    public AudioClip FireSound; // 爆炸音效
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class TankFire : MonoBehaviour
         {
             // 发射炮弹
             Instantiate(shell, fire.position, transform.rotation);
+            AudioSource.PlayClipAtPoint(FireSound, transform.position);
             // 开始冷却
             StartCoroutine(Cooldown());
         }

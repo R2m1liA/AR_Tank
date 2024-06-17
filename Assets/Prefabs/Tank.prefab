@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   fixedJoystick: {fileID: 0}
+  mainCamera: {fileID: 0}
 --- !u!114 &4339367776445269749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +171,7 @@ MonoBehaviour:
   fire: {fileID: 4743592112087670100}
   firebutton: {fileID: 0}
   cooldownTime: 2
+  FireSound: {fileID: 8300000, guid: 66c3545230001d742bb78019f6514716, type: 3}
 --- !u!114 &3215304382838439483
 MonoBehaviour:
   m_ObjectHideFlags: 0
