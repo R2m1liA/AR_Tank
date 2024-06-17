@@ -11,6 +11,7 @@ public class TankMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mainCamera = Camera.main;
         fixedJoystick = GameObject.FindObjectOfType<FixedJoystick>();
     }
 
@@ -22,26 +23,26 @@ public class TankMove : MonoBehaviour
         Vector3 cameraForward = mainCamera.transform.forward;
         Vector3 cameraRight = mainCamera.transform.right;
 
-        // È·±£Ç°·½ÏòµÄyÖµÎª0£¬ÒÔ±ÜÃâ´¹Ö±·½ÏòµÄÓ°Ïì
+        // È·ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½yÖµÎª0ï¿½ï¿½ï¿½Ô±ï¿½ï¿½â´¹Ö±ï¿½ï¿½ï¿½ï¿½ï¿½Ó°ï¿½ï¿½
         cameraForward.y = 0;
         cameraForward.Normalize();
 
-        // È·±£ÓÒ·½ÏòµÄyÖµÎª0
+        // È·ï¿½ï¿½ï¿½Ò·ï¿½ï¿½ï¿½ï¿½yÖµÎª0
         cameraRight.y = 0;
         cameraRight.Normalize();
 
-        // ¸ù¾ÝÉãÏñ»úµÄ·½Ïò¼ÆËãÒÆ¶¯·½Ïò
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½
         Vector3 movement = cameraForward * fixedJoystick.Vertical + cameraRight * fixedJoystick.Horizontal;
 
-        // ÒÆ¶¯ÎïÌå
+        // ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½
         transform.Translate(movement * moveSpeed * Time.deltaTime, Space.World);
 
-        // ½öµ±ÓÐÒÆ¶¯ÊäÈëÊ±²Å¸Ä±ä³¯Ïò
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Å¸Ä±ä³¯ï¿½ï¿½
         if (movement != Vector3.zero)
         {
-            // ¼ÆËã³¯Ïò
+            // ï¿½ï¿½ï¿½ã³¯ï¿½ï¿½
             Quaternion toRotation = Quaternion.LookRotation(movement, Vector3.up);
-            // ²åÖµÐý×ªµ½Ä¿±ê³¯Ïò
+            // ï¿½ï¿½Öµï¿½ï¿½×ªï¿½ï¿½Ä¿ï¿½ê³¯ï¿½ï¿½
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, moveSpeed * Time.deltaTime * 100f);
         }
     }

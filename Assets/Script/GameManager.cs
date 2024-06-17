@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text timeText;        // ʱ����ʾ�ı�
     public TMP_Text scoreText;       // ������ʾ�ı�
     public GameObject resultPanel; // ����������
-    public TMP_Text resultText;      // �������ı�
+    // public TMP_Text resultText;      // �������ı�
 
     private float gameTime = 60f; // ��Ϸʱ��
     private int score = 0;        // ��Ϸ����
