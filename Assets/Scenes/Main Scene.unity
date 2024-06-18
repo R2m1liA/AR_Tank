@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339a484e034f5f54cad04e9feed8c622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestory: {fileID: 0}
 --- !u!1 &177396307
 GameObject:
   m_ObjectHideFlags: 0
@@ -2178,7 +2179,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 124998788}
         m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
-        m_MethodName: Scene2
+        m_MethodName: Scene3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
