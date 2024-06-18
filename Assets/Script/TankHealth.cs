@@ -36,7 +36,7 @@ using UnityEngine.UI;
 
 public class TankHealth : MonoBehaviour
 {
-    public int startingHealth = 100;
+    public int MaxHealth = 100;
     public int currentHealth;
     public Slider healthSlider; // 引用UI Slider
     public GameManager gameManager;
@@ -44,7 +44,9 @@ public class TankHealth : MonoBehaviour
 
     void Start()
     {
-        currentHealth = startingHealth;
+        currentHealth = MaxHealth;
+        healthSlider.maxValue = MaxHealth; // 设置滑动条最大值
+        healthSlider.value = currentHealth; // 设置滑动条当前值
         UpdateHealthUI(); // 初始时更新血量UI
     }
 
