@@ -29,6 +29,8 @@ public class EnemyTankAI : MonoBehaviour
     private Transform player;
     private GameManager gameManager;
 
+    public CooldownBar cooldownBar;
+
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -51,6 +53,7 @@ public class EnemyTankAI : MonoBehaviour
                 break;
             case AIState.Attacking:
                 AttackPlayer();
+                cooldownBar.StartCooldown();
                 break;
             case AIState.Destroyed:
                 // AI���ٺ�Ĵ����߼�

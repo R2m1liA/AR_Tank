@@ -8,9 +8,10 @@ public class TankFire : MonoBehaviour
     public GameObject shell;
     public Transform fire;
     public Button firebutton;
-    public float cooldownTime; // ¹¥»÷ÀäÈ´Ê±¼ä
-    private bool canFire = true; // ÊÇ·ñ¿ÉÒÔ¹¥»÷
-    public AudioClip FireSound; // ±¬Õ¨ÒôÐ§
+    public float cooldownTime; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´Ê±ï¿½ï¿½
+    private bool canFire = true; // ï¿½Ç·ï¿½ï¿½ï¿½Ô¹ï¿½ï¿½ï¿½
+    public AudioClip FireSound; // ï¿½ï¿½Õ¨ï¿½ï¿½Ð§
+    public CooldownBar cooldownBar;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,18 +23,19 @@ public class TankFire : MonoBehaviour
     {
         if (canFire)
         {
-            // ·¢ÉäÅÚµ¯
+            // ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½
             Instantiate(shell, fire.position, transform.rotation);
             AudioSource.PlayClipAtPoint(FireSound, transform.position);
-            // ¿ªÊ¼ÀäÈ´
+            cooldownBar.StartCooldown();
+            // ï¿½ï¿½Ê¼ï¿½ï¿½È´
             StartCoroutine(Cooldown());
         }
     }
 
     IEnumerator Cooldown()
     {
-        canFire = false; // ÔÝÊ±²»ÄÜ¹¥»÷
-        yield return new WaitForSeconds(cooldownTime); // µÈ´ýÀäÈ´Ê±¼ä
-        canFire = true; // ÀäÈ´Íê³É£¬¿ÉÒÔ¹¥»÷
+        canFire = false; // ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ü¹ï¿½ï¿½ï¿½
+        yield return new WaitForSeconds(cooldownTime); // ï¿½È´ï¿½ï¿½ï¿½È´Ê±ï¿½ï¿½
+        canFire = true; // ï¿½ï¿½È´ï¿½ï¿½É£ï¿½ï¿½ï¿½ï¿½Ô¹ï¿½ï¿½ï¿½
     }
 }
