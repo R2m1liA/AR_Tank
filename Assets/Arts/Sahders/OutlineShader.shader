@@ -46,7 +46,7 @@ Shader "Unlit/OutlineShader"
                 Varyings o = (Varyings)0;
                 o.positionCS = mul(UNITY_MATRIX_MV, v.positionOS);
                 #if _USE_TANGENT
-                float3 normal = TransformObjectToWorldNormal(v.tangentOS);
+                float3 normal = TransformObjectToWorldNormal(v.tangentOS.xyz);
                 #else
                 float3 normal = TransformObjectToWorldNormal(v.normalOS);
                 #endif

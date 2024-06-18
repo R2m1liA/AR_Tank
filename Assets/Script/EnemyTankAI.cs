@@ -54,6 +54,7 @@ public class EnemyTankAI : MonoBehaviour
                 break;
             case AIState.Destroyed:
                 // AI���ٺ�Ĵ����߼�
+                DestroyTank();
                 break;
         }
     }
@@ -125,17 +126,15 @@ public class EnemyTankAI : MonoBehaviour
         {
             // �������ֵΪ�㣬�л�������״̬
             currentState = AIState.Destroyed;
-            // ���ٴ����߼������粥�ű�ը��Ч
-            Destroy(gameObject);
-            // ���ű�ը��Ч
-            Instantiate(explosionEffect, transform.position, transform.rotation);
-            // ���ű�ը��Ч
-            AudioSource.PlayClipAtPoint(explosionSound, transform.position);
-            // ������Ϸ����
-            gameManager.AddScore(20); 
-            
-            
         }
         
+    }
+
+    public void DestroyTank()
+    {
+        Instantiate(explosionEffect, transform.position, transform.rotation).GetComponent<ParticleSystem>().Play();
+        AudioSource.PlayClipAtPoint(explosionSound, transform.position);
+        gameManager.AddScore(20);
+        Destroy(gameObject);
     }
 }
