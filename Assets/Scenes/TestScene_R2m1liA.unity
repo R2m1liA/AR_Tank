@@ -5079,6 +5079,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3215304382838439483, guid: 51d37b198baa12f4693648844cc99688,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1836882544}
     - target: {fileID: 3668917873781861102, guid: 51d37b198baa12f4693648844cc99688,
         type: 3}
       propertyPath: m_Name
@@ -5146,9 +5151,29 @@ PrefabInstance:
       objectReference: {fileID: 1821710965}
     - target: {fileID: 5621127481406504458, guid: 51d37b198baa12f4693648844cc99688,
         type: 3}
+      propertyPath: idleVolume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5621127481406504458, guid: 51d37b198baa12f4693648844cc99688,
+        type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 34212116}
+    - target: {fileID: 5621127481406504458, guid: 51d37b198baa12f4693648844cc99688,
+        type: 3}
+      propertyPath: movingVolume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5621127481406504458, guid: 51d37b198baa12f4693648844cc99688,
+        type: 3}
+      propertyPath: idleEngineClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a21e40e638a94c6448b240acf5629231, type: 3}
+    - target: {fileID: 5621127481406504458, guid: 51d37b198baa12f4693648844cc99688,
+        type: 3}
+      propertyPath: movingEngineClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0ffc095c4653d90439e184f590a0c096, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
