@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+
 public enum AIState
 {
     Initializing,
@@ -31,16 +33,26 @@ public class EnemyTankAI : MonoBehaviour
 
     public CooldownBar cooldownBar;
 
+    public HealthSliderController healthSliderController;
+
+    public Slider healthSlider; // 引用UI Slider
+
+
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         gameManager = FindObjectOfType<GameManager>();
         currentState = AIState.Patrolling;
+        currentHealth = 100;
+        healthSlider.maxValue = 100; // 设置滑动条最大值
+        healthSlider.value = currentHealth; // 设置滑动条当前值
+        UpdateHealthUI(); // 初始时更新血量UI
     }
 
     void Update()
     {
+        
         switch (currentState)
         {
             case AIState.Patrolling:
@@ -139,5 +151,34 @@ public class EnemyTankAI : MonoBehaviour
         AudioSource.PlayClipAtPoint(explosionSound, transform.position);
         gameManager.AddScore(20);
         Destroy(gameObject);
+    }
+
+    private void Takeatt(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth < 0)
+        {
+            currentHealth = 0;
+        }
+        healthSliderController.SetHealthSliderValue(currentHealth);
+    }
+
+    private void Heal(int amount)
+    {
+        currentHealth += amount;
+        if (currentHealth > 100)
+        {
+            currentHealth = 100;
+        }
+        healthSliderController.SetHealthSliderValue(currentHealth);
+    }
+
+    void UpdateHealthUI()
+    {
+        // 更新血量滑动条的值
+        if (healthSlider != null)
+        {
+            healthSlider.value = (float)currentHealth;
+        }
     }
 }
