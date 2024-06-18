@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class FloatingHealthBar : MonoBehaviour
 {
-    // [SerializeField] private Slider slider;
+    private Slider healthslider;
+    private Slider blueslider;
 
-    // public void UpdateHealthBar(float currentValue, float maxValue)
-    // {
-    //     slider.value=currentValue/maxValue;
-    // }
+    public void UpdateHealthBar(float currentValue)
+    {
+        healthslider.value=currentValue/100;
+    }
+
+    public void UpdateBlueBar(){
+        blueslider.value=attackTimer/2;
+    }
 
 
     // Update is called once per frame

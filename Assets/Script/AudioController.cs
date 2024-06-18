@@ -33,7 +33,7 @@ public class AudioManager : MonoBehaviour
     public float GetVolume()
     {
         float volume;
-        audioMixer.GetFloat("Volume", out volume);
+        audioMixer.GetFloat("BackgroundMusic", out volume);
         return Mathf.Pow(10, volume / 20); // 从分贝转换为线性值
     }
 

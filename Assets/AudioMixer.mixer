@@ -31,9 +31,9 @@ AudioMixerController:
   m_UpdateMode: 0
   m_ExposedParameters:
   - guid: b7565ec4c9add474c90fb5959ae2c20a
-    name: yinliang
+    name: MyExposedParam 1
   - guid: adbbd633855ccd94abb7bae4e5ac0c1c
-    name: yinxiao
+    name: MyExposedParam
   m_AudioMixerGroupViews:
   - guids:
     - 4e07e0f0a6ae9924ebbd48caef928801
@@ -88,6 +88,7 @@ AudioMixerSnapshotController:
   m_SnapshotID: 6670fb224a601e044999be2b9c626e2a
   m_FloatValues:
     adbbd633855ccd94abb7bae4e5ac0c1c: -27.6
+    b7565ec4c9add474c90fb5959ae2c20a: -20
     a13e9258b6c058048979526d12bedef0: 0.69
   m_TransitionOverrides: {}
 --- !u!244 &1906833703715789723
